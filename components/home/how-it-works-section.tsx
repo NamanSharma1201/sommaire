@@ -61,7 +61,7 @@ export default function HowItWorksSection() {
         <div className="grid gap-12 sm:grid-cols-1 md:grid-cols-3">
           {steps.map((step, idx) => (
             <div
-              key={step.label}
+              key={idx}
               className="flex flex-col items-center text-center bg-white p-6 rounded-2xl shadow-md hover:shadow-lg transition"
             >
               <div className="text-rose-500 mb-4">{step.icon}</div>
