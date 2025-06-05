@@ -1,10 +1,9 @@
 import { FileText } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import NavLink from "./nav-link";
+import { SignedIn, SignedOut, UserButton } from "@clerk/nextjs";
 
 export default function Header() {
-  const isLoggedIn = false;
-
   return (
     <nav className="relative container mx-auto flex items-center justify-between py-4 px-4 lg:px-8">
       <div className="flex items-center gap-2">
@@ -21,15 +20,20 @@ export default function Header() {
       </div>
 
       <div className="flex items-center gap-4">
-        {isLoggedIn ? (
-          <>
+        <SignedIn>
+          <NavLink href="/dashboard">Your Summaries</NavLink>
+          <div className="flex items-center gap-3">
             <NavLink href="/upload">Upload a PDF</NavLink>
-            <div className="text-sm font-medium text-gray-500">Pro</div>
-            <Button>User</Button>
-          </>
-        ) : (
+            <div className="flex flex-col items-center">
+              <div className="text-xs font-medium text-gray-500">Pro</div>
+              <UserButton />
+            </div>
+          </div>
+        </SignedIn>
+
+        <SignedOut>
           <NavLink href="/sign-in">Sign In</NavLink>
-        )}
+        </SignedOut>
       </div>
     </nav>
   );
